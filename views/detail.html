@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Tweet Detail - SCI16Z</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <!-- 添加 Fira Code 字体用于代码展示 -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header pixel-border">
+    <div class="header-content">
+      <a href="/" class="back-button pixel-button">← Back</a>
+      <h1 class="pixel-text">Knowledge Base</h1>
+    </div>
+  </header>
+
+  <main class="detail-container">
+    <!-- 文章头部信息 -->
+    <div class="article-meta pixel-border">
+      <div class="meta-left">
+        <div class="author-info">
+          <img src="/images/avatar.png" alt="SCI16Z" class="author-avatar">
+          <div class="author-details">
+            <h3 class="author-name">SCI16Z</h3>
+            <span class="publish-date"></span>
+          </div>
+        </div>
+        <div class="article-stats">
+          <span class="likes">❤️ <span class="likes-count"></span></span>
+          <span class="views">👁️ <span class="views-count"></span></span>
+        </div>
+      </div>
+      <div class="meta-right">
+        <div class="tags">
+          <!-- 标签将通过 JavaScript 动态生成 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 主要内容区 -->
+    <article class="article-content pixel-border">
+      <h1 class="article-title"></h1>
+      <div class="article-text"></div>
+    </article>
+
+    <!-- 相关资源 -->
+    <section class="related-resources pixel-border">
+      <h2 class="section-title">相关资源</h2>
+      <div class="resources-grid">
+        <!-- 资源链接将通过 JavaScript 动态生成 -->
+      </div>
+    </section>
+
+    <!-- 讨论区 -->
+    <section class="discussion-section pixel-border">
+      <h2 class="section-title">研究讨论</h2>
+      <div class="discussion-thread">
+        <!-- 讨论内容将通过 JavaScript 动态生成 -->
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/detail-script.js"></script>
+</body>
+</html> 

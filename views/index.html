@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>SCI16Z Twitter Feed</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header pixel-border">
+    <div class="header-content">
+      <h1 class="pixel-text">SCI16Z v1</h1>
+    </div>
+  </header>
+
+  <!-- 添加标签筛选区域 -->
+  <div class="tags-filter-container">
+    <div class="tags-wrapper">
+      <h2 class="filter-title">Research Areas</h2>
+      <div class="tags-list">
+        <!-- 标签将通过 JavaScript 动态生成 -->
+      </div>
+    </div>
+    <button class="clear-filter pixel-button" style="display: none;">Clear Filter</button>
+  </div>
+
+  <main class="masonry-container">
+    <!-- 瀑布流容器 -->
+    <div class="masonry">
+      <!-- 推文卡片将通过 JavaScript 动态生成 -->
+    </div>
+  </main>
+
+  <template id="tweet-card-template">
+    <article class="masonry-item tweet-card pixel-border">
+      <div class="tweet-content">
+        <div class="tweet-tags">
+          <!-- 标签将通过 JavaScript 动态生成 -->
+        </div>
+        <p class="tweet-text"></p>
+        <div class="tweet-stats">
+          <span class="likes">❤️ <span class="likes-count"></span></span>
+          <span class="views">👁️ <span class="views-count"></span></span>
+        </div>
+        <div class="tweet-date"></div>
+      </div>
+    </article>
+  </template>
+
+  <script src="/js/script.js"></script>
+</body>
+</html> 
