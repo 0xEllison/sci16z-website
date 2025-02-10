@@ -121,12 +121,6 @@ function initMobileMenu() {
   overlay.className = 'overlay';
   body.appendChild(overlay);
 
-  // 创建关闭按钮
-  const closeBtn = document.createElement('button');
-  closeBtn.className = 'close-menu';
-  closeBtn.innerHTML = '×';
-  filterContainer.appendChild(closeBtn);
-
   // 打开菜单
   menuBtn.addEventListener('click', () => {
     filterContainer.classList.add('active');
@@ -140,9 +134,6 @@ function initMobileMenu() {
     overlay.classList.remove('active');
     body.style.overflow = '';
   };
-
-  // 点击关闭按钮
-  closeBtn.addEventListener('click', closeMenu);
 
   // 点击遮罩层关闭
   overlay.addEventListener('click', closeMenu);
