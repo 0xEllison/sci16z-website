@@ -3,12 +3,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Ubuntu', sans-serif;
     color: #fff;
   }
   body {
-    background: #0e0e0e; /* 暗色背景 */
+    background: var(--main-bg-color);
     line-height: 1.5;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
   
   /* 头部导航 */
@@ -276,11 +278,13 @@
   }
 
 :root {
-  --pixel-border-size: 4px;
-  --main-bg-color: #0a0a2a;
-  --card-bg-color: #1a1a3a;
+  --main-bg-color: #0e0e0e;
+  --card-bg-color: #1a1a1a;
   --neon-text: #00ff9d;
-  --pixel-shadow: #00ff9d33;
+  --pixel-shadow: rgba(0, 255, 157, 0.3);
+  --pixel-border-size: 4px;
+  --pixel-font: 'Press Start 2P', cursive;
+  --code-font: 'Fira Code', monospace;
 }
 
 body {
@@ -331,7 +335,10 @@ body {
 }
 
 .pixel-text {
+  font-family: var(--pixel-font);
   text-shadow: 2px 2px var(--pixel-shadow);
+  letter-spacing: 1px;
+  line-height: 1.4;
 }
 
 /* 详情页样式 */
@@ -413,6 +420,7 @@ body {
   margin-bottom: 1.5rem;
   color: var(--neon-text);
   line-height: 1.4;
+  font-family: var(--pixel-font);
 }
 
 .article-text {
@@ -473,6 +481,7 @@ body {
   font-size: 1.4rem;
   margin-bottom: 1.5rem;
   color: var(--neon-text);
+  font-family: var(--pixel-font);
 }
 
 .discussion-thread {
@@ -509,7 +518,7 @@ body {
 
 /* 代码块样式 */
 .code-block {
-  font-family: 'Fira Code', monospace;
+  font-family: var(--code-font);
   background-color: #1a1a1a;
   padding: 1rem;
   border-radius: 4px;
@@ -653,11 +662,12 @@ body {
   color: var(--neon-text);
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   border-radius: 20px;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: var(--pixel-font);
 }
 
 .tag-filter:hover {
@@ -711,4 +721,41 @@ body {
   border-radius: 15px;
   font-size: 0.8rem;
   color: var(--neon-text);
+}
+
+/* 像素风格文本 */
+.pixel-text {
+  font-family: var(--pixel-font);
+  text-shadow: 2px 2px var(--pixel-shadow);
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+
+/* 标题样式 */
+h1.pixel-text {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* 文章标题 */
+.article-title {
+  font-family: var(--pixel-font);
+  font-size: 1.2rem;
+}
+
+/* 按钮样式 */
+.pixel-button {
+  font-family: var(--pixel-font);
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+}
+
+/* 代码块样式 */
+.code-block {
+  font-family: var(--code-font);
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  overflow-x: auto;
 }

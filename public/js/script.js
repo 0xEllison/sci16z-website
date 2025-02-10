@@ -142,4 +142,10 @@ function handleScroll() {
 document.addEventListener('DOMContentLoaded', () => {
   fetchTweets();
   window.addEventListener('scroll', handleScroll);
+});
+
+// 检查字体加载状态
+document.fonts.ready.then(() => {
+  // 字体加载完成后再显示内容
+  document.body.style.opacity = '1';
 }); 
