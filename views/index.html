@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>SCI16Z Twitter Feed</title>
+  <title>SCI16Z alpha v0.1.12</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" as="style">
@@ -11,13 +11,41 @@
 <body>
   <header class="header pixel-border">
     <div class="header-content">
-      <h1 class="pixel-text">SCI16Z v1</h1>
+      <h1 class="pixel-text">SCI16Z alpha v0.1.12</h1>
       <button class="mobile-menu-btn pixel-button">
         <span class="menu-icon">🔍</span>
         <span class="menu-text">Areas</span>
       </button>
     </div>
   </header>
+
+  <!-- AI 状态面板 -->
+  <div class="ai-status-container">
+    <div class="ai-status pixel-border">
+      <div class="status-grid">
+        <div class="status-row">
+          <span class="status-icon">🤖</span>
+          <span class="status-text">AI Status: <span class="status-value">Online</span></span>
+        </div>
+        <div class="status-row">
+          <span class="status-icon">📚</span>
+          <span class="status-text">Papers Processed: <span id="papers-count">0</span>/24h</span>
+        </div>
+        <div class="status-row">
+          <span class="status-icon">⏳</span>
+          <span class="status-text">Current Era: <span id="current-era">Genesis</span></span>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="era-progress">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <span class="progress-text">Next Era: <span id="knowledge-blocks">0</span> blocks</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- 添加标签筛选区域 -->
   <div class="tags-filter-container">

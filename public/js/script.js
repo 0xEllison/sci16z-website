@@ -187,4 +187,62 @@ document.addEventListener('DOMContentLoaded', () => {
 document.fonts.ready.then(() => {
   // 字体加载完成后再显示内容
   document.body.style.opacity = '1';
+});
+
+// AI 状态控制
+const eras = [
+  { name: 'Genesis Era', blocks: 1000 },
+  { name: 'Ancient Era', blocks: 2000 },
+  { name: 'Classical Era', blocks: 3000 },
+  { name: 'Medieval Era', blocks: 4000 },
+  { name: 'Renaissance Era', blocks: 5000 },
+  { name: 'Industrial Era', blocks: 6000 },
+  { name: 'Modern Era', blocks: 7000 },
+  { name: 'Information Era', blocks: 8000 },
+  { name: 'Quantum Era', blocks: 9000 },
+  { name: 'Interstellar Era', blocks: 10000 }
+];
+
+function updateAIStatus() {
+  // 更新论文处理数量
+  const papersCount = document.getElementById('papers-count');
+  const currentCount = parseInt(papersCount.textContent);
+  const newCount = currentCount + Math.floor(Math.random() * 5);
+  papersCount.textContent = newCount;
+
+  // 更新知识块和纪元
+  const knowledgeBlocks = document.getElementById('knowledge-blocks');
+  const currentEra = document.getElementById('current-era');
+  const progressFill = document.querySelector('.progress-fill');
+  
+  let currentBlocks = parseInt(knowledgeBlocks.textContent);
+  currentBlocks += Math.floor(Math.random() * 3);
+
+  // 查找当前纪元
+  let eraIndex = 0;
+  for (let i = 0; i < eras.length; i++) {
+    if (currentBlocks < eras[i].blocks) {
+      eraIndex = i;
+      break;
+    }
+  }
+
+  // 更新显示
+  const era = eras[eraIndex];
+  currentEra.textContent = era.name;
+  
+  // 计算到下一个纪元的进度
+  const prevEraBlocks = eraIndex > 0 ? eras[eraIndex - 1].blocks : 0;
+  const progressPercentage = ((currentBlocks - prevEraBlocks) / (era.blocks - prevEraBlocks)) * 100;
+  
+  progressFill.style.width = `${progressPercentage}%`;
+  knowledgeBlocks.textContent = `${currentBlocks - prevEraBlocks}/${era.blocks - prevEraBlocks}`;
+}
+
+// 定期更新状态
+setInterval(updateAIStatus, 3000);
+
+// 初始化状态
+document.addEventListener('DOMContentLoaded', () => {
+  updateAIStatus();
 }); 

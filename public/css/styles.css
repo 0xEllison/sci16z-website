@@ -969,3 +969,75 @@ h1.pixel-text {
     display: block;
   }
 }
+
+/* AI 状态容器 */
+.ai-status-container {
+  max-width: 1400px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+}
+
+/* AI 状态模块 */
+.ai-status {
+  background: var(--card-bg-color);
+  padding: 1.5rem;
+  border-radius: 4px;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  font-family: var(--pixel-font);
+  font-size: 0.8rem;
+  background: rgba(0, 255, 157, 0.05);
+  padding: 1rem;
+  border: 1px solid var(--neon-text);
+  border-radius: 4px;
+}
+
+.status-icon {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  filter: drop-shadow(0 0 2px var(--neon-text));
+}
+
+.progress-container {
+  background: rgba(0, 255, 157, 0.05);
+  padding: 1.5rem;
+  border: 1px solid var(--neon-text);
+  border-radius: 4px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 255, 157, 0.1);
+  border: 1px solid var(--neon-text);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  box-shadow: inset 0 0 5px rgba(0, 255, 157, 0.2);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .status-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .ai-status {
+    padding: 1rem;
+  }
+
+  .progress-container {
+    padding: 1rem;
+  }
+}
