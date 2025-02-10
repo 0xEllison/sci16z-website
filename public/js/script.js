@@ -110,9 +110,57 @@ function displayTweets(tweets) {
   });
 }
 
-// 添加清除筛选按钮的事件监听
+// 移动端菜单控制
+function initMobileMenu() {
+  const menuBtn = document.querySelector('.mobile-menu-btn');
+  const filterContainer = document.querySelector('.tags-filter-container');
+  const body = document.body;
+
+  // 创建遮罩层
+  const overlay = document.createElement('div');
+  overlay.className = 'overlay';
+  body.appendChild(overlay);
+
+  // 创建关闭按钮
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'close-menu';
+  closeBtn.innerHTML = '×';
+  filterContainer.appendChild(closeBtn);
+
+  // 打开菜单
+  menuBtn.addEventListener('click', () => {
+    filterContainer.classList.add('active');
+    overlay.classList.add('active');
+    body.style.overflow = 'hidden';
+  });
+
+  // 关闭菜单的函数
+  const closeMenu = () => {
+    filterContainer.classList.remove('active');
+    overlay.classList.remove('active');
+    body.style.overflow = '';
+  };
+
+  // 点击关闭按钮
+  closeBtn.addEventListener('click', closeMenu);
+
+  // 点击遮罩层关闭
+  overlay.addEventListener('click', closeMenu);
+
+  // 点击标签后关闭菜单
+  document.querySelectorAll('.tag-filter').forEach(tag => {
+    tag.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        closeMenu();
+      }
+    });
+  });
+}
+
+// 页面加载完成后的初始化
 document.addEventListener('DOMContentLoaded', () => {
   fetchTweets();
+  initMobileMenu();
   
   const clearFilterBtn = document.querySelector('.clear-filter');
   clearFilterBtn.addEventListener('click', () => {

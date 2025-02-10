@@ -15,7 +15,7 @@ async function fetchTweetDetail() {
     
     // 填充文章元信息
     document.querySelector('.publish-date').textContent = 
-      new Date(tweetData.created_at).toLocaleDateString('zh-CN');
+      new Date(tweetData.created_at).toLocaleDateString('en-US');
     document.querySelector('.likes-count').textContent = tweetData.likes;
     document.querySelector('.views-count').textContent = tweetData.views;
     
@@ -30,65 +30,52 @@ async function fetchTweetDetail() {
       tagsContainer.appendChild(tagElement);
     });
     
-    // 提取标题和内容
+    // 设置文章内容（移除标签）
     const textWithoutTags = tweetData.text.replace(/#[\w\u4e00-\u9fa5]+/g, '').trim();
-    const firstLineBreak = textWithoutTags.indexOf('\n');
-    const title = firstLineBreak > -1 ? 
-      textWithoutTags.slice(0, firstLineBreak) : 
-      textWithoutTags;
-    const content = firstLineBreak > -1 ? 
-      textWithoutTags.slice(firstLineBreak + 1) : 
-      '';
-
-    // 填充文章内容
-    document.querySelector('.article-title').textContent = title;
-    document.querySelector('.article-text').textContent = content;
+    document.querySelector('.article-text').textContent = textWithoutTags;
+    document.querySelector('.article-title').textContent = textWithoutTags.slice(0, 100) + '...';
     
-    // 生成相关资源
-    const resourcesGrid = document.querySelector('.resources-grid');
-    if (tweetData.resources) {
-      tweetData.resources.forEach(resource => {
-        const resourceCard = document.createElement('a');
-        resourceCard.className = 'resource-card';
-        resourceCard.href = resource.url;
-        resourceCard.target = '_blank';
-        resourceCard.innerHTML = `
+    // 显示相关资源
+    if (tweetData.resources && tweetData.resources.length > 0) {
+      const resourcesGrid = document.querySelector('.resources-grid');
+      resourcesGrid.innerHTML = tweetData.resources.map(resource => `
+        <a href="${resource.url}" target="_blank" class="resource-card">
           <h3>${resource.title}</h3>
           <p>${resource.description}</p>
-        `;
-        resourcesGrid.appendChild(resourceCard);
-      });
+        </a>
+      `).join('');
     }
     
-    // 生成讨论内容
+    // 显示讨论内容
     const discussionThread = document.querySelector('.discussion-thread');
-    discussionThread.innerHTML = ''; // 清空现有讨论
     if (tweetData.authorReplies && tweetData.authorReplies.length > 0) {
-      tweetData.authorReplies.forEach((reply, index) => {
-        const discussionItem = document.createElement('div');
-        discussionItem.className = 'discussion-item';
-        discussionItem.innerHTML = `
-          <div class="discussion-content">
-            <div class="discussion-meta">
-              <span class="discussion-author">SCI16Z</span>
-              <span class="discussion-date">
-                ${new Date(reply.created_at).toLocaleDateString('zh-CN')}
-              </span>
-            </div>
-            <div class="discussion-text">${reply.text}</div>
+      discussionThread.innerHTML = tweetData.authorReplies.map(reply => `
+        <div class="discussion-item">
+          <div class="discussion-meta">
+            <span class="author-name">SCI16Z</span>
+            <span class="reply-date">
+              ${new Date(reply.created_at).toLocaleDateString('en-US')}
+            </span>
           </div>
-        `;
-        discussionThread.appendChild(discussionItem);
-      });
+          <div class="discussion-text">${reply.text}</div>
+        </div>
+      `).join('');
     } else {
-      discussionThread.innerHTML = '<p class="no-discussion">暂无讨论</p>';
+      discussionThread.innerHTML = '<p class="no-discussion">No discussions yet.</p>';
     }
     
   } catch (error) {
     console.error('Error fetching tweet detail:', error);
     document.querySelector('.article-content').innerHTML = 
-      '<p class="error-message">内容未找到</p>';
+      '<p class="error-message">Content not found</p>';
   }
 }
 
-document.addEventListener('DOMContentLoaded', fetchTweetDetail); 
+// 页面加载完成后获取数据
+document.addEventListener('DOMContentLoaded', fetchTweetDetail);
+
+// 检查字体加载状态
+document.fonts.ready.then(() => {
+  // 字体加载完成后再显示内容
+  document.body.style.opacity = '1';
+}); 
